@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp06">
+    <div ng-controller="myCtrl06">
+        <p>{{msg | json}}</p>
+        <p>{{price | currency : '￥' : 1 }}</p>
+        <p>{{TODAY | date : 'yyyy-MM-dd'}}</p>
+        <p>{{colors | filter : filterChar}}</p>
+        <p>{{colors | filter :colorFilter}}</p>
+        <p>{{str1 | uppercase }}</p>
+        <p>{{str2 | lowercase }}</p>
+        <p>{{str3 | limitTo : 2:4 }}</p>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('myApp06',[])
+        .controller('myCtrl06',function ($scope) {
+            //json过滤器
+            $scope.msg = {
+                name:'zks',
+                age:10
+            }
+            //价格过滤器
+            $scope.price = -10
+            //日期过滤器
+            $scope.TODAY = new Date()
+            $scope.dateStr = '2018/01/01'
+            var dateChange = new Date($scope.dateStr)
+            console.log(dateChange)
+            //filter过滤器
+            $scope.colors = ['zks','sjx','z']
+            $scope.filterChar = 'z'
+            $scope.colorFilter = function (color) {
+                return color.indexOf('z') != 0
+            }
+            //字符串过滤器
+            $scope.str1 = 'asdf'
+            $scope.str2 = 'ASDF'
+            $scope.str3 = 'ABCDEFGHIJK'
+        })
+</script>
+</html>

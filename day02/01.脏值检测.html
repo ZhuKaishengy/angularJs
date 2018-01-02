@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="app1">
+    <form name="form1" ng-controller="ctrl1">
+        <input type="text" name="username" ng-model="userName" required maxlength="3" ng-class="{'has-error': form1.username.$invalid}">
+        <span style="color: red" ng-show="form1.username.$dirty && form1.username.$invalid">username 必填</span><br>
+        <input type="password" name="password" ng-model="pasWord" required ng-maxlength="3" pattern="^\d+$">
+        <span style="color: red" ng-show="form1.password.$dirty && form1.password.$invalid">password 必填</span><br>
+        <input type="submit" value="submit" ng-click="submit()">
+    </form>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    /**
+     * 脏检查就是表单验证
+     * 1.注意：name="form1"，name="username" 必须定义一个name属性
+     * 2.可以使用html5的表单验证也可以使用angular提供的表单验证
+     * 3.使用 ng-show="form1.username.$dirty && form1.username.$invalid" 来提供错误信息
+     * 4.h5的patten属性值为正则表达式的值，angular的ng-patten 指令的值为完整的正则表达式
+     */
+    angular.module('app1',[])
+        .controller('ctrl1',function ($scope) {
+            $scope.submit = function () {
+                console.log($scope)
+            }
+        })
+</script>
+</html>

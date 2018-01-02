@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>aisino 注册</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        button{
+            width: 100%;
+        }
+    </style>
+</head>
+<body ng-app="registApp">
+    <div id="main" class="container" ng-controller="registCtrl">
+        <h2 class="text-center">aisino 注册系统</h2>
+        <div class="container-fluid">
+            <form class="form-horizontal" name="registForm">
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <label for="username">用户名：</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="text" name="username" id="username" required ng-model="person.username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <label for="password">密&emsp;码：</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="password" name="password" id="password" required ng-model="person.password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <label for="email">邮&emsp;箱：</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input type="email" name="email" id="email" required ng-model="person.email">
+                    </div>
+                </div>
+                <div>
+                    <p class="text-danger" ng-show="registForm.username.$dirty && registForm.username.$invalid">用户名不能为空</p>
+                    <p class="text-danger" ng-show="registForm.password.$dirty && registForm.password.$invalid">密码不能为空</p>
+                    <p class="text-danger" ng-show="registForm.email.$dirty && registForm.email.$invalid">邮箱不能为空</p>
+                    <p class="text-danger" ng-show="registForm.$dirty && registForm.$invalid">上面有错</p>
+                </div>
+                <button class="btn btn-primary" ng-click="submit();">提交</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('registApp',[])
+        .controller('registCtrl',function ($scope) {
+            $scope.person = {};
+            $scope.submit = function () {
+                if($scope.registForm.$dirty && $scope.registForm.$invalid){
+                    console.log($scope.person)
+                }
+            }
+        })
+</script>
+</html>

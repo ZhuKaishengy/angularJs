@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h1>{{msg}}</h1>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    /**
+     * 1.引入angular自带angular对象
+     * 2.angular.module获取ng-app：angular.module('myApp',[])
+     * 3.angular的变量需要定义在作用域中，controller定义了一个作用域
+     * 4.使用ng-controller="myCtrl"指令标注一个controller
+     * 5.将angular的自带$scope对象注入到controller中，并为msg变量赋值
+     * 6.$scope本质是一个服务，angular自带的服务都是以$开头的，自带的指令都是以ng开头的
+     */
+    var appModule = angular.module('myApp',[])
+    // console.log(angular)
+    // console.log(appModule)
+    appModule.controller('myCtrl',function ($scope) {
+        $scope.msg = 'haha'
+    })
+</script>
+</html>

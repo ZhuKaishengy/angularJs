@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="myApp05">
+    <div ng-controller="myCtrl05">
+        <button ng-click="click('001')">{{tab1}}</button>
+        <button ng-click="click('002')">{{tab2}}</button>
+        <h1 ng-show="detail">商品详情页面</h1>
+        <h1 ng-show="list">商品列表页面</h1>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('myApp05',[])
+        .controller('myCtrl05',function ($scope) {
+            $scope.tab1 = '商品详情'
+            $scope.tab2 = '商品列表'
+            $scope.click = function (ele) {
+                if(ele === '001'){
+                    $scope.detail = true
+                    $scope.list = false
+                    return
+                }
+                $scope.detail = false
+                $scope.list = true
+            }
+        })
+</script>
+</html>

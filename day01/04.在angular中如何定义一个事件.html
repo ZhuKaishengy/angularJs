@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp04">
+    <div ng-controller="myCtrl04">
+        <input type="text" ng-model="msg04"><br>
+        <button ng-click="clickMe(colors[0],$event);">{{colors[0]}}</button>
+        <button ng-click="clickMe(colors[1],$event);">{{colors[1]}}</button>
+        <button ng-click="clickMe(colors[2],$event);">{{colors[2]}}</button>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    angular.module('myApp04',[])
+        .controller('myCtrl04',function ($scope) {
+            $scope.msg04 = 'zks'
+            $scope.colors = ['red','green','blue']
+            $scope.clickMe = function (color,e) {
+                console.log(e.target)
+                $(e.target).css('background-color',color)
+            }
+        })
+    /**
+     * 注意：在angular中事件对象为$event，获取回调函数对象，使用$event.target
+     */
+</script>
+</html>
