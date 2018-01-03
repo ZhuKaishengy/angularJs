@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular中的作用域</title>
+</head>
+<body ng-app="rootApp">
+rootApp:{{content}} <hr>
+<div ng-controller="oldBrotherCtrl">
+    oldBrotherCtrl:{{content}} <hr>
+</div>
+<div ng-controller="parentCtrl" ng-click="changeScope();">
+    parentCtrl:{{content}} <hr>
+    <div ng-controller="myCtrl">
+        myCtrl:{{content}} <hr>
+    </div>
+    <div ng-controller="yourCtrl">
+        yourCtrl:{{content}} <hr>
+    </div>
+</div>
+<div ng-controller="youngerBrotherCtrl">
+    youngerBrotherCtrl:{{content}} <hr>
+</div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    const content = 'zks'
+    angular.module('rootApp',[])
+        .run(function ($rootScope) {
+            $rootScope.content = content
+            $rootScope.changeScope = function () {
+                console.log(this,'haha')
+                this.content = 'sjx'
+            }
+        })
+        .controller('oldBrotherCtrl',function ($scope) {
+
+        })
+        .controller('youngerBrotherCtrl' ,function ($scope) {
+
+        })
+        .controller('parentCtrl' ,function ($scope) {
+
+        })
+        .controller('myCtrl' ,function ($scope) {
+            console.log($scope)
+        })
+        .controller('yourCtrl' ,function ($scope) {
+
+        })
+    //angular中的作用域基于原型链
+</script>
+</html>

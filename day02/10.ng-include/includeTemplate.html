@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="includeTemplateApp">
+<div ng-controller="includeTemplateCtrl">
+    <button ng-click="promp($event);">click</button>
+    <div ng-show="flag" ng-include="'mytemplate.html'"></div>
+</div>
+</body>
+<script type="text/javascript" src="../../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('includeTemplateApp',[])
+        .controller('includeTemplateCtrl',function ($scope) {
+            $scope.promp = function (ele) {
+                console.log('123')
+                $scope.flag = true
+                $scope.innerH = ele.target.innerHTML
+                $scope.username = 'zks'
+                $scope.password = '123'
+            }
+        })
+</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>angular常用指令</title>
+</head>
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+<body ng-app="app3">
+    <div ng-controller="ctrl3" class="container">
+        <form name="myForm" class="form-horizontal" ng-submit="submit($event)">
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="username">用户名：</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="username" id="username" ng-model="data.username" required ng-maxlength="5" ng-change="change();">
+                    <span ng-show="myForm.username.$dirty && myForm.username.$invalid" class="text-danger">用户名填写不正确！</span>
+                    <span class="text-info" ng-show="showDiffParam">{{data.username}}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="gender">性&emsp;别</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="radio" name="gender" id="gender" ng-model="data.gender">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4">
+                    <label for="size">尺&emsp;寸</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="checkbox" name="size" id="size" ng-model="data.size">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <button class="btn btn-success form-control" type="submit">提交</button>
+                </div>
+            </div>
+        </form>
+        <div>
+            <a ng-href="{{ng_href}}" target="here">百度一下</a>
+        </div>
+        <iframe name="here" frameborder="1" style="width:1000px; height:50px; "></iframe>
+        <div><img ng-src="{{ng_img}}" alt="haha" class="img-circle" style="margin-left: 50%"></div>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('app3',[])
+        .controller('ctrl3',function ($scope,$timeout) {
+            //ng-change:指令不同于其他指令，依赖ng-model，并获取不到事件对象$event
+            $scope.showDiffParam =false
+
+            $scope.change = function () {
+                $scope.showDiffParam = true
+            }
+
+            //ng-submit:指令，绑定在form元素上，执行的方法为 有type=submit属性的 button或input
+            console.log($scope);
+
+            $scope.submit = function () {
+                console.log(arguments)
+                console.log(this)
+            }
+
+            $timeout(function () {
+                //ng-href:指令，动态改变a标签的值,避免在渲染a标签时href不存在，跳转不存在的页面
+                $scope.ng_href = 'http://www.baidu.com'
+            },2000)
+            //ng-src指令：动态加载图片的地址
+            $scope.ng_img = 'https://picsum.photos/200/300/?random'
+        })
+</script>
+</html>

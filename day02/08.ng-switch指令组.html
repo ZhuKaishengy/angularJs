@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="app8">
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+<div ng-controller="ctrl8">
+    <div>
+        <form name="form">
+            <button class="btn btn-success" ng-click="changePage('1');">页面一</button>
+            <button class="btn btn-success" ng-click="changePage('2');">页面二</button>
+            <button class="btn btn-success" ng-click="changePage('3');">页面三</button>
+        </form>
+    </div>
+    <div ng-switch="page">
+        <div ng-switch-default="1"><span>页面一</span></div>
+        <div ng-switch-when="2"><span>页面二</span></div>
+        <div ng-switch-when="3"><span>页面三</span></div>
+    </div>
+</div>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('app8',[])
+        .controller('ctrl8',function ($scope) {
+            $scope.changePage = function (ele) {
+                $scope.page = ele
+            }
+
+        })
+    //ng-switch指令用于页面间的切换
+</script>
+</body>
+</html>

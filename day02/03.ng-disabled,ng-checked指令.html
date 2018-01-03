@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body ng-app="app2">
+    <div id="main" ng-controller="ctrl2">
+        <form name="form1">
+            <input type="text" name="username" id="username" ng-disabled="check"> <br>
+            <button ng-click="toggle();">toggle-disabled</button> <br>
+            <input type="checkbox" name="email" id="email" ng-checked="wh"> <br>
+            <button ng-click="diff();">toggle-diff</button>
+        </form>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('app2',[])
+        .controller('ctrl2',function ($scope) {
+            $scope.check = true
+            $scope.toggle = function () {
+                $scope.check = !($scope.check)
+            }
+            $scope.wh = false
+            $scope.diff = function () {
+                $scope.wh = !($scope.wh)
+            }
+        })
+</script>
+</html>

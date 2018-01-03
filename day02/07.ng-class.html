@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-class指令</title>
+</head>
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+<style>
+    .red{
+        background-color: indianred;
+    }
+    .green{
+        background-color: forestgreen;
+    }
+    .font-white{
+        font-size: large;
+        font-family: Euphemia;
+        color: #ffffff;
+    }
+</style>
+<body ng-app="app7">
+<div id="main" ng-controller="ctrl7" class="container">
+    <div>
+        <form name="form7">
+            <button class="btn btn-danger" ng-click="changeNum();">开始</button>
+        </form>
+    </div>
+    <div id="ng-class" style="margin-top: 30px;text-align: center" ng-class="{'red':result > 4, green : result <= 4}">
+        <span>{{result}}</span>
+    </div>
+    <div id="ng-style" style="margin-top: 30px;text-align: center" ng-style="changeStyle">
+        <span>{{result}}</span>
+    </div>
+
+</div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('app7',[])
+        .controller('ctrl7',function ($scope) {
+            $scope.result = '初始值'
+            $scope.red = 'red font-white'
+            $scope.green = 'green font-white'
+            $scope.green1 = 'background-color: forestgreen;'
+            $scope.changeNum = function () {
+                $scope.result = Math.ceil(Math.random()*6)
+                if($scope.result > 4){
+                    $scope.changeStyle = {'background-color': 'forestgreen'}
+                }
+            }
+
+        })
+    //ng-class指令很强大，参数值可以是对象，变量，字符串，数组
+    //ng-style指令值可以是变量也可以是对象
+</script>
+</html>

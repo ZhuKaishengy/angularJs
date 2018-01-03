@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+</head>
+<body ng-app="app4">
+    <div class="main" ng-controller="ctrl4">
+        {{msg}}
+        <p>haha</p>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('app4',[])
+        .run(function () {
+            console.log(this)//Window
+            console.log(arguments)//[]
+        })
+        .controller('ctrl4',function ($scope,$rootScope,$element) {
+            console.log('====================================')
+            console.log(this)//{}
+            console.log($scope)//ChildScope
+            console.log($rootScope)//Scope
+            console.log($element)//JQLite
+            $rootScope.msg = 'zks'
+            $scope.msg = 'sjx'//打印sjx，离得近
+            $element.css({
+                'background-color':'green',
+                'height':'50px'
+            }).find('p').text('xixi')
+        })
+    //$element本质上是jqLite对象，可以使用jq的方法
+</script>
+</html>

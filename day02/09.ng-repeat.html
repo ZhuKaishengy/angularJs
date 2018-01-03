@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+<style>
+    .stripe{
+        background-color: #efefef;
+    }
+</style>
+<body ng-app="app9">
+    <div class="container" ng-controller="myCtrl09">
+        <ul ng-show="showornot">
+            <li ng-repeat="user in users" ng-class="{'stripe': $even , 'text-success':$first , 'text-danger' : $last}">
+                {{user}}
+                {{$index}}
+                {{$first}}
+                {{$last}}
+                {{$odd}}
+                {{$even}}
+            </li>
+        </ul>
+        <div>
+            <button class="btn btn-success" ng-click="haha();">点击</button>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    angular.module('app9',[])
+        .controller('myCtrl09',function ($scope) {
+            $scope.users = ['a','b','c','d','e','f','g']
+            $scope.showornot = true
+            //切换显示与隐藏
+            $scope.haha = function () {
+                if($scope.showornot === false){
+                    $scope.showornot = true
+                    return
+                }
+                $scope.showornot = false
+            }
+
+        })
+        //ng-repeat="user in users"指令用于遍历数据，内置5个对象，$index，$first，$last，$odd，$even，均为boolean值
+</script>
+</html>
