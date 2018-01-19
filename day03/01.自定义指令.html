@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="module01">
+    <my-print></my-print>
+    <p my-print></p>
+    <p class="my-print"></p>
+    <!-- directive:my-print -->
+</body>
+<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+<script type="text/javascript">
+    //指令在html中主要作用是为其提供特定的功能
+    /**
+     * angular中有四种定义指令的方式ECMA
+     *      Restrict表示指令的类型
+     *      E：元素<my-title></my-title>(默认)
+     *      C：类<div class = "my-title"></div>
+     *      M：注释类型comment <!--directive: my-title-->
+     *      A：属性类型 <div my-title></div>（默认）
+     */
+    angular.module('module01',[])
+        .directive('myPrint',function () {
+            console.log(this)
+            console.log(arguments)
+            return{
+                restrict:'ECMA',
+                templateUrl: 'template.html',
+                //是否替原来的容器元素
+                // replace:false
+
+            }
+        })
+</script>
+</html>
